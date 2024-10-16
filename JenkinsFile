@@ -19,7 +19,7 @@ pipeline {
         stage('Run Python Script') {
             steps {
                 // Run the Python script
-                sh 'python3 your_script.py'
+                sh 'python3 code_1.py'
             }
         }
     }
