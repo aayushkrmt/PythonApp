@@ -12,7 +12,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 // Install Python dependencies using pip
-                sh 'pip install requests beautifulsoup4'
+                sh 'pip3 install requests beautifulsoup4'
             }
         }
         
