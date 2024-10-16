@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Clone Repository') {
+            steps {
+                // Clone the GitHub repository
+                git branch: 'main', url: 'https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                // Install Python dependencies using pip
+                sh 'pip install requests beautifulsoup4'
+            }
+        }
+        
+        stage('Run Python Script') {
+            steps {
+                // Run the Python script
+                sh 'python3 your_script.py'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline executed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed!'
+        }
+    }
+}
