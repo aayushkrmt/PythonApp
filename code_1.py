@@ -9,25 +9,25 @@ response = requests.get(url)
 if response.status_code == 200:
     soup = BeautifulSoup(response.text, 'html.parser')
     
+    # Find the "Similar Reads" section by its heading
+    similar_reads_section = soup.find('div', {'class': 'similar-reads'})  # Adjust selector as needed
+    similar_reads = []
+    
+    if similar_reads_section:
+        # Extract all links under the "Similar Reads" section
+        links = similar_reads_section.find_all('a')
+        for link in links:
+            similar_reads.append({
+                'title': link.text.strip(),
+                'url': link['href']
+            })
+    
     data = {
-        'title': soup.title.text if soup.title else 'No title found',
-        'paragraphs': [],
-        'headings': []
+        'similar_reads': similar_reads
     }
     
-    paragraphs = soup.find_all('p')
-    for p in paragraphs:
-        data['paragraphs'].append(p.text)
-    
-    headings = soup.find_all(['h1', 'h2', 'h3'])
-    for heading in headings:
-        data['headings'].append({
-            'type': heading.name,
-            'text': heading.text
-        })
-    
     json_data = json.dumps(data, indent=4)
-    
     print(json_data)
+    
 else:
     print(f'Failed to retrieve the page. Status code: {response.status_code}')
