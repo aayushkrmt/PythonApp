@@ -5,7 +5,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 // Clone the GitHub repository
-                git url: 'https://github.com/aayushkrmt/PythonApp.git', branch: 'main', credentialsId: '418825f6-7273-430d-983a-4740958949de'
+                git url: 'https://github.com/aayushkrmt/PythonApp.git', branch: 'main', credentialsId: '1cdc3b6a-b0d8-4f91-9490-2668cc5251e6'
             }
         }
 
